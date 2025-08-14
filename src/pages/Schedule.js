@@ -7,7 +7,7 @@ function Schedule({ currentUserId }) {
   const [month, setMonth] = useState(today.getMonth());
   const [year, setYear] = useState(today.getFullYear());
   const [showForm, setShowForm] = useState(false);
-  const [selectedCell, setSelectedCell] = useState(null);
+  // const [selectedCell, setSelectedCell] = useState(null);
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",

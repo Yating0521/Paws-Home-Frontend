@@ -38,7 +38,7 @@ export default function AdminEvent() {
     setLoading(true);
     setErr('');
     try {
-      const r = await fetch(`${API_BASE}/api/events`);
+      const r = await fetch(`${API_URL}/api/events`);
       const data = await r.json();
       setEvents(data.map((e) => ({
         ...e,
@@ -72,7 +72,7 @@ export default function AdminEvent() {
   if (msg) { setErr(msg); return; }
   setErr('');
   try {
-    const r = await fetch(`${API_BASE}/api/events`, {
+    const r = await fetch(`${API_URL}/api/events`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -109,7 +109,7 @@ export default function AdminEvent() {
     if (msg) { setErr(msg); return; }
     setErr('');
     try {
-      const r = await fetch(`${API_BASE}/api/events/${id}`, {
+      const r = await fetch(`${API_URL}/api/events/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -133,7 +133,7 @@ export default function AdminEvent() {
   const onDelete = async (id) => {
     if (!window.confirm('Delete this event?')) return;
     try {
-      const r = await fetch(`${API_BASE}/api/events/${id}`, { method: 'DELETE' });
+      const r = await fetch(`${API_URL}/api/events/${id}`, { method: 'DELETE' });
       if (!r.ok && r.status !== 204) throw new Error();
       setEvents((prev) => prev.filter((x) => x.event_id !== id));
     } catch {

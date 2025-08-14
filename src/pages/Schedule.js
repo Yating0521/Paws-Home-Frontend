@@ -18,7 +18,9 @@ function Schedule({ currentUserId }) {
     // Reset selected date when month or year changes
     const formattedToday = `${year}-${String(month + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     setSelectedDate(formattedToday);
-  }, [year, month]);
+  }, [year, month, today]);
+
+  
 
   const generateCalendar = () => {
     const firstDay = new Date(year, month, 1).getDay();

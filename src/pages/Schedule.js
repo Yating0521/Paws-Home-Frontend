@@ -28,6 +28,8 @@ function Schedule({ currentUserId }) {
     const calendarDays = [];
 
     let date = 1;
+    const todayCopy = new Date(today);
+    todayCopy.setHours(0, 0, 0, 0);
     for (let i = 0; i < 6; i++) {
       const week = [];
       for (let j = 0; j < 7; j++) {
@@ -38,7 +40,7 @@ function Schedule({ currentUserId }) {
         } else {
           const currentDate = new Date(year, month, date);
           const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
-          const isPast = currentDate < new Date(today.setHours(0, 0, 0, 0));
+          const isPast = currentDate < new Date(todayCopy.setHours(0, 0, 0, 0));
           const isSelected = selectedDate === formattedDate;
 
           week.push(

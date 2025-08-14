@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Events({ currentUserId }) {
   const [events, setEvents] = useState([]);
 
   // Fetch events from backend on component mount
   useEffect(() => {
-    fetch('http://localhost:5000/api/events')
+    fetch(`${API_URL}/api/events`)
       .then(response => response.json())
       .then(data => setEvents(data))
       .catch(error => {
@@ -23,7 +25,7 @@ function Events({ currentUserId }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/events/${eventId}/signup`, {
+      const res = await fetch(`${API_URL}/api/events/${eventId}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: currentUserId }),

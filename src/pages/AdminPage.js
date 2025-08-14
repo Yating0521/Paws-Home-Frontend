@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
-const API_BASE = 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function AdminVolunteer() {
   // ---- Volunteers CRUD ----
@@ -31,7 +31,7 @@ export default function AdminVolunteer() {
     setLoading(true);
     setErr('');
     try {
-      const r = await fetch(`${API_BASE}/api/volunteers`);
+      const r = await fetch(`${API_URL}/api/volunteers`);
       const data = await r.json();
       setVols(data);
     } catch (e) {
@@ -62,7 +62,7 @@ export default function AdminVolunteer() {
   //     return;
   //   }
   //   try {
-  //     const r = await fetch(`${API_BASE}/api/volunteers`, {
+  //     const r = await fetch(`${API_URL}/api/volunteers`, {
   //       method: 'POST',
   //       headers: { 'Content-Type': 'application/json' },
   //       body: JSON.stringify(newVol),
@@ -86,7 +86,7 @@ export default function AdminVolunteer() {
     }
     setLoading(true);
     try {
-      const r = await fetch(`${API_BASE}/api/volunteers/${searchId.trim()}`);
+      const r = await fetch(`${API_URL}/api/volunteers/${searchId.trim()}`);
       if (!r.ok) {
         if (r.status === 404) setErr('Volunteer not found');
         else throw new Error();
@@ -118,7 +118,7 @@ export default function AdminVolunteer() {
   // Save edited volunteer
   const saveEdit = async (userId, volunteerId) => {
     try {
-      const res = await fetch(`${API_BASE}/api/users/${userId}`, {
+      const res = await fetch(`${API_URL}/api/users/${userId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editVol),
@@ -144,7 +144,7 @@ export default function AdminVolunteer() {
   //     return;
   //   }
   //   try {
-  //     const r = await fetch(`${API_BASE}/api/users/${id}`, {
+  //     const r = await fetch(`${API_URL}/api/users/${id}`, {
   //       method: 'PUT',
   //       headers: { 'Content-Type': 'application/json' },
   //       body: JSON.stringify(editVol),
@@ -163,7 +163,7 @@ export default function AdminVolunteer() {
   const onDelete = async (id) => {
     if (!window.confirm('Delete this volunteer for sure?')) return;
     try {
-      const r = await fetch(`${API_BASE}/api/volunteers/${id}`, { method: 'DELETE' });
+      const r = await fetch(`${API_URL}/api/volunteers/${id}`, { method: 'DELETE' });
       if (!r.ok && r.status !== 204) throw new Error();
       setVols((prev) => prev.filter((x) => x.volunteer_id !== id));
     } catch {
@@ -197,7 +197,7 @@ export default function AdminVolunteer() {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/messages', {
+      const res = await fetch(`${API_URL}/api/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

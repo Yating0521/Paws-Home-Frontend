@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import '../App.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Schedule({ currentUserId }) {
   // const today = new Date();
   const today = useMemo(() => new Date(), []);
@@ -71,7 +73,7 @@ function Schedule({ currentUserId }) {
     const [startTime, endTime] = shiftTime.split('-');
 
     try {
-      const response = await fetch('http://localhost:5000/api/schedules', {
+      const response = await fetch(`${API_URL}/api/schedules`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

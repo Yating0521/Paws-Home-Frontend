@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function LogHours({currentUserId}) {
   const [formData, setFormData] = useState({
     date: '',
@@ -20,7 +22,7 @@ function LogHours({currentUserId}) {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/log_hours', {
+      const response = await fetch(`${API_URL}/api/log_hours`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

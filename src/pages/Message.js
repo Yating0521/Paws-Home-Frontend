@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Message({ currentUserId }) {
   const [messages, setMessages] = useState([]);
   const [activeMessage, setActiveMessage] = useState(null);
@@ -10,7 +12,7 @@ function Message({ currentUserId }) {
     if (!currentUserId) return;
 
     setLoading(true);
-    fetch(`http://localhost:5000/api/messages/${currentUserId}`)
+    fetch(`${API_URL}/api/messages/${currentUserId}`)
 
       .then(response => response.json())
       .then(data => {

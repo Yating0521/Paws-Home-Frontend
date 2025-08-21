@@ -91,62 +91,156 @@ body {
     left: 0;
     width: 100%;
     height: 0;
-    background: #ff8800;
+    background: linear-gradient(135deg, #ff8800 0%, #ff6600 100%);
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 0;
     overflow: hidden;
-    transition: height 0.3s ease;
+    transition: height 0.4s ease;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
   
   /* 菜单展开状态 */
   .navbar.active {
     height: calc(100vh - 70px);
     overflow-y: auto;
+    padding: 20px 0;
   }
   
   .navbar a {
-    width: 100%;
+    width: 90%;
     text-align: center;
-    padding: 15px 20px;
-    margin: 0;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 18px 25px;
+    margin: 8px 0;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
   
-  .btn-logout {
+  .navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
     width: 100%;
-    margin: 15px 0;
-    padding: 15px;
-    border-radius: 0;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .navbar a:hover::before {
+    left: 100%;
+  }
+  
+  .navbar a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar a:active {
+    transform: translateY(0);
+  }
+  
+  /* 登出按钮样式 */
+  .navbar .btn-logout {
+    width: 90%;
+    margin: 20px 0 15px 0;
+    padding: 18px 25px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar .btn-logout:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* 菜单项之间的分隔线 */
+  .navbar a:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 8px auto 0;
+    border-radius: 50%;
+  }
+  
+  /* 菜单滚动条样式 */
+  .navbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .navbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  
+  .navbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  .navbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
   }
 }
 
 /* 超小屏幕优化 */
 @media (max-width: 480px) {
   .header-container {
-    padding: 0 10px;
-    height: 60px;
+    padding: 0 12px;
+    height: 65px;
   }
   
   .logo img {
-    height: 40px;
+    height: 45px;
   }
   
   .navbar.active {
-    top: 60px;
-    height: calc(100vh - 60px);
+    top: 65px;
+    height: calc(100vh - 65px);
+    padding: 15px 0;
   }
   
   .navbar a {
-    padding: 12px 15px;
-    font-size: 0.95em;
+    width: 92%;
+    padding: 16px 20px;
+    margin: 6px 0;
+    font-size: 1.05em;
+  }
+  
+  .navbar .btn-logout {
+    width: 92%;
+    padding: 16px 20px;
+    margin: 18px 0 12px 0;
+  }
+  
+  /* 菜单图标动画 */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
   }
 }
-
 .navbar a {
   color: #fff;
   text-decoration: none;
@@ -357,22 +451,16 @@ footer {
     padding: 6px;
   }
 
-  /* .date-selectors {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  } */
-
   .calendar {
     overflow-x: auto;
   }
 
-  .shift-form select, 
+  /* .shift-form select, 
   .shift-form button {
     width: 100%;
     padding: 10px;
     margin-top: 8px;
-  }
+  } */
 }
 
 /* Legend */

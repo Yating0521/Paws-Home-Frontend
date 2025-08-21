@@ -149,17 +149,6 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
-  /* .navbar a::before {
-    content: none;
-  }
-  
-  .navbar a:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: none;
-    box-shadow: none;
-    padding-left: 35px;
-  } */
-  
   .navbar a:active {
     transform: none;
   }
@@ -191,25 +180,6 @@ body {
   .navbar a:not(:last-child)::after {
     content: none;
   }
-  
-  /* 菜单滚动条样式
-  .navbar::-webkit-scrollbar {
-    width: 6px;
-  } */
-/*   
-  .navbar::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-  }
-  
-  .navbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-  }
-  
-  .navbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
-  } */
   
   .navbar::before {
     content: "MENU";

@@ -64,7 +64,7 @@ body {
   background: #8d7fc7;
 }
 
-/* 汉堡菜单按钮 */
+/* toggle menu */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -86,7 +86,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* 汉堡菜单动画效果 */
 .menu-toggle.active span:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
@@ -99,14 +98,12 @@ body {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* 移动端样式 */
+/* Responsive styles */
 @media (max-width: 768px) {
-  /* 汉堡菜单按钮显示 */
   .menu-toggle {
     display: flex;
   }
   
-  /* 导航菜单样式 - 修改为新的布局风格 */
   .navbar {
     position: fixed;
     top: 70px;
@@ -125,14 +122,12 @@ body {
     padding: 0;
   }
   
-  /* 菜单展开状态 */
   .navbar.active {
     height: calc(100vh - 70px);
     overflow-y: auto;
     padding: 0;
   }
   
-  /* 新的导航链接样式 */
   .navbar a {
     width: 100%;
     text-align: left;
@@ -154,24 +149,21 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
-  /* 移除之前的悬浮效果 */
-  .navbar a::before {
+  /* .navbar a::before {
     content: none;
   }
   
-  /* 新的悬浮效果 */
   .navbar a:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: none;
     box-shadow: none;
     padding-left: 35px;
-  }
+  } */
   
   .navbar a:active {
     transform: none;
   }
-  
-  /* 登出按钮样式调整 */
+
   .navbar .btn-logout {
     width: 100%;
     margin: 0;
@@ -196,16 +188,15 @@ body {
     padding-left: 35px;
   }
   
-  /* 移除分隔线 */
   .navbar a:not(:last-child)::after {
     content: none;
   }
   
-  /* 菜单滚动条样式 */
+  /* 菜单滚动条样式
   .navbar::-webkit-scrollbar {
     width: 6px;
-  }
-  
+  } */
+/*   
   .navbar::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
@@ -218,9 +209,8 @@ body {
   
   .navbar::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.4);
-  }
+  } */
   
-  /* 添加菜单标题 */
   .navbar::before {
     content: "MENU";
     display: block;
@@ -421,7 +411,7 @@ footer {
   cursor: default;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .calendar table {
     font-size: 12px;
   }
@@ -432,13 +422,6 @@ footer {
 
   .calendar {
     overflow-x: auto;
-  }
-
-  .shift-form select
-  /*, .shift-form button */{
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
   }
 }
 
@@ -672,61 +655,58 @@ footer {
   margin-top: 80px;
 }
 
-@media (max-width: 768px) {
-  .events-page {
+@media (max-width: 968px) {
+  .message-page {
     padding: 15px 10px;
   }
   
-  .cards {
-    gap: 20px;
+  .msg-container {
+    flex-direction: column;
     margin: 20px auto;
-    padding: 0 10px;
+    min-height: auto;
+    border-radius: 8px;
   }
   
-  .card {
-    padding: 20px 15px;
-    border-radius: 10px;
-    margin: 0 5px;
+  .msg-list {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0dff5;
+    padding: 15px 0;
+    max-height: 200px;
+    overflow-y: auto;
   }
   
-  .card h2 {
+  .msg-list ul {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .msg-list li {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .msg-detail {
+    padding: 20px;
+    min-height: 300px;
+  }
+  
+  .msg-detail h2 {
     font-size: 1.3rem;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
   }
   
-  .card-content {
-    padding: 0 10px;
-  }
-  
-  .event-detail {
+  .msg-detail p {
     font-size: 0.95rem;
     line-height: 1.5;
-    margin-bottom: 12px;
-    text-align: left;
   }
   
-  .event-info {
-    font-size: 0.9rem;
-    padding-left: 20px;
-    margin: 6px 0;
-  }
-  
-  .event-info::before {
-    content: "•";
-    position: absolute;
-    left: 8px;
-    color: #6c5ca4;
-    font-weight: bold;
-  }
-  
-  .signup-btn {
-    width: 90%;
-    max-width: 250px;
-    padding: 14px 0;
-    margin: 20px auto 0;
+  .msg-detail .empty {
+    margin-top: 40px;
     font-size: 1rem;
   }
 }
+
 
 /* LogHours Page */
 .log-hours-page {

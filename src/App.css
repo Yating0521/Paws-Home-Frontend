@@ -46,7 +46,25 @@ body {
   text-align: center;
 }
 
-/* 汉堡菜单按钮 (默认隐藏) */
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 1.1em;
+  transition: background 0.2s;
+}
+
+.navbar a:hover,
+.navbar a:focus,
+.navbar a:active {
+  background: #8d7fc7;
+}
+
+/* 汉堡菜单按钮 */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -68,52 +86,156 @@ body {
   transition: all 0.3s ease;
 }
 
+/* 汉堡菜单动画效果 */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 /* 移动端样式 */
 @media (max-width: 768px) {
+  /* 汉堡菜单按钮显示 */
   .menu-toggle {
     display: flex;
   }
   
+  /* 导航菜单样式 - 修改为新的布局风格 */
   .navbar {
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 70px;
     left: 0;
-    right: 0;
-    background: #ff8800;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(135deg, #ff8800 0%, #ff6600 100%);
     flex-direction: column;
     align-items: center;
-    max-height: 0;
+    justify-content: flex-start;
+    gap: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: height 0.4s ease;
+    z-index: 1000;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    padding: 0;
   }
   
-  .navbar.open {
-    max-height: 300px; /* 根据需要调整高度 */
-    transition: max-height 0.3s ease-in;
+  /* 菜单展开状态 */
+  .navbar.active {
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    padding: 0;
   }
   
+  /* 新的导航链接样式 */
   .navbar a {
-    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+    padding: 20px 30px;
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
     font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* 移除之前的悬浮效果 */
+  .navbar a::before {
+    content: none;
+  }
+  
+  /* 新的悬浮效果 */
+  .navbar a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: none;
+    box-shadow: none;
+    padding-left: 35px;
+  }
+  
+  .navbar a:active {
+    transform: none;
+  }
+  
+  /* 登出按钮样式调整 */
+  .navbar .btn-logout {
+    width: 100%;
+    margin: 0;
+    padding: 20px 30px;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: left;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .navbar .btn-logout:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: none;
+    box-shadow: none;
+    padding-left: 35px;
+  }
+  
+  /* 移除分隔线 */
+  .navbar a:not(:last-child)::after {
+    content: none;
+  }
+  
+  /* 菜单滚动条样式 */
+  .navbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .navbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  
+  .navbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  .navbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* 添加菜单标题 */
+  .navbar::before {
+    content: "MENU";
+    display: block;
+    width: 100%;
+    padding: 25px 30px 15px;
+    font-size: 0.9em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   }
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 1.1em;
-  transition: background 0.2s;
-}
 
-.navbar a:hover,
-.navbar a:focus,
-.navbar a:active {
-  background: #8d7fc7;
-}
 
 /* Main */
 .main-content {
@@ -312,12 +434,12 @@ footer {
     overflow-x: auto;
   }
 
-  /* .shift-form select, 
-  .shift-form button {
+  .shift-form select
+  /*, .shift-form button */{
     width: 100%;
     padding: 10px;
     margin-top: 8px;
-  } */
+  }
 }
 
 /* Legend */
@@ -460,6 +582,33 @@ footer {
 
 .signup-btn:hover {
   background: #6c5ca4;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    padding: 0 10px;
+  }
+  
+  .card h2 {
+    font-size: 1.3rem;
+  }
+  
+  .event-detail {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+  
+  .event-info {
+    font-size: 0.9rem;
+    padding-left: 20px;
+  }
+  
+  .signup-btn {
+    width: 90%;
+    max-width: 250px;
+    padding: 14px 0;
+    font-size: 1rem;
+  }
 }
 
 /* Message Page */

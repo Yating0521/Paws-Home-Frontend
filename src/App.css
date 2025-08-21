@@ -46,11 +46,104 @@ body {
   text-align: center;
 }
 
-@media (max-width: 600px) {
+/* 汉堡菜单按钮 (默认隐藏) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* 移动端样式 */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 15px;
+    height: 70px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  /* 汉堡菜单按钮显示 */
+  .menu-toggle {
+    display: flex;
+  }
+  
+  /* 导航菜单样式 */
   .navbar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #ff8800;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  /* 菜单展开状态 */
+  .navbar.active {
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  
+  .navbar a {
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px;
+    margin: 0;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .btn-logout {
+    width: 100%;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 0;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 10px;
+    height: 60px;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .navbar.active {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+  
+  .navbar a {
+    padding: 12px 15px;
+    font-size: 0.95em;
   }
 }
 

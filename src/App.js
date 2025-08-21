@@ -17,7 +17,8 @@ function App() {
 
   const [role, setRole] = useState(null);
   const [currentUserId, setCurrentUserId] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedRole = localStorage.getItem('role');
@@ -26,7 +27,7 @@ function App() {
       setRole(storedRole);
       setCurrentUserId(storedUserId);
     }
-    setLoading(false); 
+    setLoading(false);
   }, []);
 
   if (loading) return null;
@@ -54,7 +55,19 @@ function App() {
               <img src={Logo} alt="PawsHome" />
             </Link>
 
-            {role && (
+            {/* 汉堡菜单按钮 */}
+            <button
+              className="menu-toggle"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+
+
+            {/* {role && (
               <nav className="navbar">
                 {role === 'volunteer' && (
                   <>
@@ -76,6 +89,31 @@ function App() {
 
               </nav>
             )}
+          </div>
+        </header> */}
+            <nav className={`navbar ${isMenuOpen ? 'active' : ''}`}>
+              {role && (
+                <>
+                  {role === 'volunteer' && (
+                    <>
+                      <Link to="/schedule" onClick={() => setIsMenuOpen(false)}>SCHEDULE</Link>
+                      <Link to="/event" onClick={() => setIsMenuOpen(false)}>EVENT</Link>
+                      <Link to="/message" onClick={() => setIsMenuOpen(false)}>MESSAGE</Link>
+                      <Link to="/loghours" onClick={() => setIsMenuOpen(false)}>LOG YOUR HOURS</Link>
+                    </>
+                  )}
+
+                  {role === 'admin' && (
+                    <>
+                      <Link to="/adminPage" onClick={() => setIsMenuOpen(false)}>VOLUNTEER MANAGEMENT</Link>
+                      <Link to="/adminEvent" onClick={() => setIsMenuOpen(false)}>EVENT MANAGEMENT</Link>
+                    </>
+                  )}
+
+                  <button className="btn-logout" onClick={handleLogout}>Logout</button>
+                </>
+              )}
+            </nav>
           </div>
         </header>
 

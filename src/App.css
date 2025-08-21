@@ -46,6 +46,14 @@ body {
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
 .navbar a {
   color: #fff;
   text-decoration: none;
@@ -248,7 +256,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-  /* 字体和间距缩小 */
   .calendar table {
     font-size: 12px;
   }
@@ -257,19 +264,16 @@ footer {
     padding: 6px;
   }
 
-  /* 让选择器竖排，更适合手机 */
-  .date-selectors {
+  /* .date-selectors {
     display: flex;
     flex-direction: column;
     gap: 8px;
-  }
+  } */
 
-  /* 表格超出屏幕时允许横向滑动 */
   .calendar {
     overflow-x: auto;
   }
 
-  /* 预约表单按钮和下拉框全宽 */
   .shift-form select, 
   .shift-form button {
     width: 100%;
